@@ -24,6 +24,14 @@
             <intent android:action="android.settings.SYSTEM_UPDATE_SETTINGS" />
         </PreferenceScreen>
 
+        <!-- KiDream Updates -->
+        <PreferenceScreen android:key="system_update_settings"
+                android:title="@string/system_update_settings_list_item_title"
+                android:summary="@string/system_update_settings_list_item_summary">
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="de.yanniks.kidreamupdates"
+                    android:targetClass="de.yanniks.kidreamupdates.splash.SplashScreen" />
+        </PreferenceScreen>
 
         <PreferenceScreen android:key="additional_system_update_settings"
                           android:title="@string/additional_system_update_settings_list_item_title">
