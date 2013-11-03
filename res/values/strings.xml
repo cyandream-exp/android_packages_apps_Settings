@@ -4903,10 +4903,4 @@
 
     <!-- Text to display in regulatory info screen (from device overlay). -->
     <string name="regulatory_info_text"></string>
-
-    <!-- Advanced reboot options -->
-    <string name="advanced_reboot_title">Advanced reboot</string>
-    <string name="advanced_reboot_summary">When unlocked, include options in the power menu for rebo
-oting into recovery or bootloader</string>
-
 </resources>
