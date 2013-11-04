@@ -55,6 +55,7 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
     private static final String PROPERTY_URL_SAFETYLEGAL = "ro.url.safetylegal";
     private static final String PROPERTY_SELINUX_STATUS = "ro.build.selinux";
     private static final String KEY_KERNEL_VERSION = "kernel_version";
+    private static final String KEY_KD_VERSION = "kd_version";
     private static final String KEY_BUILD_NUMBER = "build_number";
     private static final String KEY_DEVICE_MODEL = "device_model";
     private static final String KEY_SELINUX_STATUS = "selinux_status";
@@ -91,6 +92,8 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
         setValueSummary(KEY_EQUIPMENT_ID, PROPERTY_EQUIPMENT_ID);
         setStringSummary(KEY_DEVICE_MODEL, Build.MODEL);
         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
+        setValueSummary(KEY_KD_VERSION, "ro.kd.version");
+        findPreference(KEY_KD_VERSION).setEnabled(true);
         findPreference(KEY_BUILD_NUMBER).setEnabled(true);
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
 
@@ -212,6 +215,18 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
                             Toast.LENGTH_SHORT);
                     mDevHitToast.show();
                 }
+        } else if (preference.getKey().equals(KEY_KD_VERSION)) {
+            System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);
+            mHits[mHits.length-1] = SystemClock.uptimeMillis();
+            if (mHits[0] >= (SystemClock.uptimeMillis()-500)) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.setClassName("android",
+                        com.android.internal.app.PlatLogoActivity.class.getName());
+                try {
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, "Unable to start activity " + intent.toString());
+            }
             } else if (mDevHitCountdown < 0) {
                 if (mDevHitToast != null) {
                     mDevHitToast.cancel();

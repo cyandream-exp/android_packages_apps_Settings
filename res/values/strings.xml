@@ -26,6 +26,9 @@
     <!-- Strings for Dialog allow button -->
     <string name="allow">Allow</string>
 
+    <!-- KiDream version -->
+    <string name="kd_version">KiDream version</string>
+
     <!-- Strings for Dialog deny button -->
     <string name="deny">Deny</string>
 
